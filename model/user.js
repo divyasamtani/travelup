@@ -1,4 +1,9 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const locationSchema = require('./location').schema;
+const listSchema = require('./list').schema;
+
+
 var bcrypt   = require('bcrypt-nodejs');
 
 // define the schema for user
@@ -25,9 +30,28 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
-    }
+    },
+
+    instagram        : {
+       id           : String,
+       token        : String,
+       email        : String,
+       name         : String
+    },
+
+    name              : String,
+    status            : String,
+    locations         : [{ type: Schema.Types.ObjectId, ref: 'Location' }],
+    lists             : [listSchema],
+    worldPercentage   : Number,
+    countriesCovered  : Number,
+    travelScore       : String,
+    profilePicture    : String, // URL
+
 
 });
+
+
 
 // methods ======================
 

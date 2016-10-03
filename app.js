@@ -35,10 +35,10 @@ app.use(flash());
 require('./config/passport')(passport);
 
 // Routes
-require('./routes/routes')(app, passport);
+require('./controller/account')(app, passport);
 
 // listen
 app.listen( 3000, function(){
-    console.log('lisning on port 3000');
+    console.log('listening on port 3000');
 });
 
