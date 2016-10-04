@@ -1,0 +1,51 @@
+extends base/clean-layout
+
+block style
+  link(rel='stylesheet', href='css/auth.css')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css')
+
+block script
+  script(src='js/auth.js')
+
+block main
+  .cont#signin
+    .demo
+      .login
+        .login__check
+        .login__form
+          .login__row
+            svg.login__icon.name.svg-icon(viewbox='0 0 20 20')
+              path(d='M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8')
+            input.login__input.name(type='text', placeholder='Username')
+          .login__row
+            svg.login__icon.pass.svg-icon(viewbox='0 0 20 20')
+              path(d='M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0')
+            input.login__input.pass(type='password', placeholder='Password')
+          button.login__submit(type='button') Sign In
+          p.login__signup
+            | Don't have an account?  
+            a#signup-switch Sign up
+  .cont#signup(style="display: none")
+    .demo
+      .login
+        .login__check
+        .login__form
+          .login__row
+            svg.login__icon.name.svg-icon(viewbox='0 0 20 20')
+              path(d='M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8')
+            input.login__input.name(type='text', placeholder='Username')
+          .login__row
+            svg.login__icon.pass.svg-icon(viewbox='0 0 20 20')
+              path(d='M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0')
+            input.login__input.pass(type='password', placeholder='Password')
+          .login__row
+            svg.login__icon.pass.svg-icon(viewbox='0 0 20 20')
+              path(d='M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0')
+            input.login__input.pass(type='password', placeholder='Password Confirmation')
+          button.login__submit(type='button') Sign Up
+          p.login__signup
+            | Sign in with social media
+            a(href='/auth/facebook')
+            span#facebooksignin.fa.fa-facebook.fa-2x
+            a(href='/auth/instagram')
+            span#instagramsignin.fa.fa-instagram.fa-2x

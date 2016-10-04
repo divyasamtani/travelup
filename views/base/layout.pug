@@ -3,20 +3,29 @@ html(lang='en')
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=yes')
     meta(http-equiv='x-ua-compatible', content='ie=edge')
-    title Material Design Bootstrap
+
+    title TRAVELUP
+
+    //- CSS
     //- Font Awesome
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css')
     //- Bootstrap core CSS
     link(href='lib/css/bootstrap.min.css', rel='stylesheet')
     //- Material Design Bootstrap
     link(href='lib/css/mdb.min.css', rel='stylesheet')
-    //- Custom styles
-    link(href='css/style.css', rel='stylesheet')
+
+
     //- Vector Map
     link(href='css/map.css', rel='stylesheet')
+    //- Custom styles
+    link(href='css/style.css', rel='stylesheet')
 
-  body
+    //- Fonts
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet prefetch')
+
+    //- JS
     //- JQuery
     script(type='text/javascript', src='lib/js/jquery-2.2.3.min.js')
     //- Bootstrap tooltips
@@ -25,10 +34,17 @@ html(lang='en')
     script(type='text/javascript', src='lib/js/bootstrap.min.js')
     //- MDB core JavaScript
     script(type='text/javascript', src='lib/js/mdb.min.js')
+
+
     //- Vector Map
     script(type='text/javascript', src='js/map.js')
     script(type='text/javascript', src='js/world-mill.js')
-    //- Local script
+  body
+    //- Main Content Style
+    block style
+
+    //- Main Content Script
     block script
 
+    //- Main Content
     block main

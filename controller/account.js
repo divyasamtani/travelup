@@ -10,7 +10,7 @@ module.exports = function (app, passport) {
 
   // SIGN UP
   app.get('/', function(req, res){
-    res.render('signup', { message: req.flash('loginMessage') });
+    res.render('auth', { message: req.flash('loginMessage') });
   });
 
   app.post('/', passport.authenticate('local-signup', {
@@ -36,7 +36,7 @@ module.exports = function (app, passport) {
 
   // FB CALLBACK
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect : '/secret',
+    successRedirect : '/signin',
     failureRedirect : '/login',
     failureFlash: true
   }));
