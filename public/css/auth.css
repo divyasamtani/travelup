@@ -57,6 +57,11 @@ input, button {
   padding: 10px;
 }
 
+#signupmessage {
+  font-size: 12px;
+  color: #ABA8AE;
+}
+
 #facebooksignin{
   padding:10px;
 }

@@ -13,11 +13,18 @@ module.exports = function (app, passport) {
     res.render('auth', { message: req.flash('loginMessage') });
   });
 
-  app.post('/', passport.authenticate('local-signup', {
-    successRedirect : '/secret',
-    failureRedirect : '/',
-    failureFlash: true
-  }));
+  app.post('/', function(req, res, next){
+    passport.authenticate('local-signup', function(err, user, info){
+      if (err) {return res.json(err).status(500);}
+      if (!user) {return res.json(info).status(400);}
+
+      req.logIn(user, function(err) {
+            if (err) { return next(err); }
+            return res.json({detail: user});
+      });
+      return res.json(user).status(200);
+    })(req,res,next);
+  })
 
   // LOGIN
   app.get('/login', function(req, res){
@@ -25,8 +32,9 @@ module.exports = function (app, passport) {
   });
 
   app.post('/login', passport.authenticate('local-login', {
+
     successRedirect : '/secret',
-    failureRedirect : '/login',
+    failureRedirect : '/',
     failureFlash: true
   }));
 
@@ -36,7 +44,7 @@ module.exports = function (app, passport) {
 
   // FB CALLBACK
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    successRedirect : '/signin',
+    successRedirect : '/secret',
     failureRedirect : '/login',
     failureFlash: true
   }));

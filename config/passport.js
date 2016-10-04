@@ -29,70 +29,68 @@ module.exports = function( passport ) {
 
   // Passport signup
   passport.use('local-signup', new localStrategy({
-      usernameField : 'email',
-      passwordField : 'password',
-      passReqToCallback: true
-    },
-    function( req, email, password, done){
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback: true
+  },
+  function( req, email, password, done){
+    // Check that the email is in the right format
+    if( !validator.isEmail(email) ){
+      return done(null, false, {message: 'That is not a valid email address'});
+    }
 
-        // Check that the email is in the right format
-        if( !validator.isEmail(email) ){
-          return done(null, false, req.flash('loginMessage','That is not a valid email address'));
+    // Check that the password is at least 8 chars
+    if( password.length < 8 ){
+      return done(null, false, {message: 'The password needs to be 8 chars long'});
+    }
+
+    process.nextTick(function(){
+      User.findOne( {'local.email' : email }, function(err, user){
+        if(err){
+          return done(err);
         }
-
-        // Check that the password is at least 8 chars
-        if( password.length < 8 ){
-          return done(null, false, req.flash('loginMessage','The password needs to be 8 chars long'));
-        }
-
-        process.nextTick(function(){
-          User.findOne( {'local.email' : email }, function(err, user){
+        if(user){
+          return done(null, false, {message: 'That email is already in use'});
+        }else{
+          var newUser = new User();
+          newUser.local.email = email;
+          newUser.local.password = password;
+          newUser.save(function(err){
             if(err){
-              return done(err);
+              console.log(err);
             }
-            if(user){
-              return done(null, false, req.flash('loginMessage','That email is already in use'));
-            }else{
-              var newUser = new User();
-              newUser.local.email = email;
-              newUser.local.password = password;
-              newUser.save(function(err){
-                if(err){
-                  console.log(err);
-                }
-                return done(null, newUser, req.flash('loginMessage', 'Logged in successfully'));
-              });
-            }
+            return done(null, newUser, {message:  'Logged in successfully'});
           });
-        });
-    }));
+        }
+      });
+    });
+  }));
 
   // Passport login
   passport.use('local-login', new localStrategy({
-      usernameField : 'email',
-      passwordField : 'password',
-      passReqToCallback: true
-    },
-    function( req, email, password, done){
-        process.nextTick(function(){
-          User.findOne( {'local.email' : email }, function(err, user){
-            if(err){
-              return done(err);
-            } if(!user){
-              return done(null,false, req.flash('loginMessage', 'sorry no one by that email'));
-            }
-            user.validPassword(password, function(err, isMatch){
-              if(isMatch){
-                return done(null, user, req.flash('loginMessage', 'Logged in successfully'));
-              }
-              return done(null,false, req.flash('loginMessage', 'sorry wrong password'));
-            })
-          });
-        });
-    }));
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback: true
+  },
+  function( req, email, password, done){
+    process.nextTick(function(){
+      User.findOne( {'local.email' : email }, function(err, user){
+        if(err){
+          return done(err);
+        } if(!user){
+          return done(null,false, req.flash('loginMessage', 'sorry no one by that email'));
+        }
+        user.validPassword(password, function(err, isMatch){
+          if(isMatch){
+            return done(null, user, req.flash('loginMessage', 'Logged in successfully'));
+          }
+          return done(null,false, req.flash('loginMessage', 'sorry wrong password'));
+        })
+      });
+    });
+  }));
 
-// FACEBOOK LOGIN
-
+  // FACEBOOK LOGIN
   passport.use(new facebookStrategy({
     clientID: "593738544131570",
     clientSecret: "93eb98281889228dd8fc1b5ff1913cb9",
@@ -139,20 +137,20 @@ module.exports = function( passport ) {
           return done(err);
         }
         if(user){
-              return done(null, user, req.flash('loginMessage', 'Logged in successfully'));
-            }else{
-              var newUser = new User();
-              newUser.instagram.id = profile.id;
-              newUser.instagram.token = accessToken;
-              newUser.instagram.name = profile.displayName;
-              newUser.save(function(err){
-                if(err){
-                  console.log(err);
-                }
-                return done(null, newUser, req.flash('loginMessage', 'Logged in successfully'));
-              });
+          return done(null, user, req.flash('loginMessage', 'Logged in successfully'));
+        }else{
+          var newUser = new User();
+          newUser.instagram.id = profile.id;
+          newUser.instagram.token = accessToken;
+          newUser.instagram.name = profile.displayName;
+          newUser.save(function(err){
+            if(err){
+              console.log(err);
             }
+            return done(null, newUser, req.flash('loginMessage', 'Logged in successfully'));
           });
+        }
       });
+    });
   }));
 }
