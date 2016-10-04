@@ -22,7 +22,7 @@ module.exports = function (app, passport) {
             if (err) { return next(err); }
             return res.json({detail: user});
       });
-      return res.json(user).status(200);
+
     })(req,res,next);
   })
 

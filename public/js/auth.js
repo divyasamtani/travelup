@@ -41,8 +41,12 @@ $(document).ready(function() {
       url: "/",
       data: {email:email, password:password}
     }).done(function(resp){
-      //console.log(resp);
-      window.location = "http://localhost:3000/secret"
+      if(resp.message != undefined){
+        $('#signupmessage').text(resp.message);
+      }else{
+        window.location = "http://localhost:3000/secret"
+      }
+
     }).error(function(resp){
       console.log(resp);
     });
