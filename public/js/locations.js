@@ -3,6 +3,7 @@ $(document).ready(function(){
   var worldCoverage     = 0;
   var travelPercentage  = 0;
   var travelLevel       = null;
+  var locations   = [];
 
   // GENERATE MAP
   function generateMap () {
@@ -49,10 +50,9 @@ $(document).ready(function(){
 
       console.log(e.target);
 
-
-      var locations   = [];
       var $checkboxes = $("input[type=checkbox]");
 
+      locations =[];
       for(var i = 0; i < $checkboxes.length; i++) {
         var checkbox = $checkboxes[i];
         if (checkbox.checked) {
@@ -65,6 +65,7 @@ $(document).ready(function(){
       travelPercentage = Math.round((locations.length/176)*100);
       $('#travelPercentage').text(travelPercentage + '%');
       updateTravelLevel(travelPercentage);
+      savelocations();
     });
   }
 
@@ -86,4 +87,13 @@ $(document).ready(function(){
   }
 
   init();
+
+  if($('#loc').length == 1){
+    var userLocations = JSON.parse( $('#loc').text());
+    mapObject.setSelectedRegions(userLocations);
+  }
+
+
+
+
 });

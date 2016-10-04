@@ -36,6 +36,7 @@ require('./config/passport')(passport);
 
 // Routes
 require('./controller/account')(app, passport);
+require('./controller/userController')(app);
 
 // listen
 app.listen( 3000, function(){

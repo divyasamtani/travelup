@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const locationSchema = require('./location').schema;
 const listSchema = require('./list').schema;
 
 
@@ -41,7 +40,7 @@ var userSchema = mongoose.Schema({
 
     name              : String,
     status            : String,
-    locations         : [{ type: Schema.Types.ObjectId, ref: 'Location' }],
+    locations         : [String],
     lists             : [listSchema],
     worldPercentage   : Number,
     countriesCovered  : Number,
@@ -50,7 +49,6 @@ var userSchema = mongoose.Schema({
 
 
 });
-
 
 
 // methods ======================

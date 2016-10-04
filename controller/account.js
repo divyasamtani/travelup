@@ -61,7 +61,7 @@ module.exports = function (app, passport) {
 
     // SECRET (IF LOGGED IN)
   app.get('/secret', isLoggedIn, function(req, res){
-    res.render('secret', { message: req.flash('loginMessage') });
+    res.render('secret', { message: req.flash('loginMessage'), json: JSON.stringify(req.user.locations) });
   });
 
   // LOGOUT

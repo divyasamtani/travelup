@@ -1,0 +1,51 @@
+extends base/layout
+
+block main
+  nav.navbar.navbar-dark.bg-primary
+    //- Collapse button
+    button.navbar-toggler.hidden-sm-up(type='button', data-toggle='collapse', data-target='#collapseEx2')
+      i.fa.fa-bars
+    .container
+      //- Collapse content
+      #collapseEx2.collapse.navbar-toggleable-xs
+        //- Navbar Brand
+        a.navbar-brand(href='#') Travelup
+        //- Links
+        ul.nav.navbar-nav
+          li.nav-item.active
+            a.nav-link(href='#')
+              | Home
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link(href='#') My Profile
+          li.nav-item
+            a.nav-link(href='#') Friends
+      //- /.Collapse content
+  #mainbody.container
+    .row
+      #mapdiv.col-xs-6
+        .col-xs-12
+          h1#mapheader My Map
+          #map
+          p#loc=json
+        .col-xs-12
+          #travelstats
+          table.table
+            thead.thead-inverse
+              tr
+                td#tableheader Travel Stats
+            tbody
+              tr
+                td World Coverage
+                td#worldCoverage
+              tr
+                td Travel Percentage
+                td#travelPercentage
+              tr
+                td Travel Level
+                td#travelLevel
+      .col-xs-6
+
+  script(type='text/javascript', src='js/locations.js')
+
+
