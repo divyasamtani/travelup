@@ -58,11 +58,10 @@ module.exports = function (app, passport) {
      failureFlash: true
    }));
 
-// ASK IF I HAVE TO STRINGIFY ALL THE OTHER DATA TOO
 
     // SECRET (IF LOGGED IN)
   app.get('/secret', isLoggedIn, function(req, res){
-    res.render('secret', { message: req.flash('loginMessage'), json: JSON.stringify(req.user.locations) });
+    res.render('secret', { message: req.flash('loginMessage'), json: JSON.stringify(req.user.locations)});
   });
 
   // LOGOUT

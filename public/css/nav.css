@@ -21,7 +21,7 @@ html, body {
 
 .content {
   flex: 1;
-  padding-left: 65px;
+  padding-left: 45px;
   padding-top: 30px;
   background: #eee;
   box-shadow: 0 0 5px rgba(0,0,0,1);

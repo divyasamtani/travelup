@@ -1,27 +1,23 @@
 * {
-
-  font-family: 'Alegreya Sans SC', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
 }
 
-
 /*PROFILE SET UP PAGE*/
-
-
 #myLocations {
-  padding: 30px;
   height: 600px;
+  margin-left: 30px;
   overflow: auto;
 }
 
 #myLocations h1 {
   margin-bottom: 10px;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 #mapheader {
   margin-bottom: 10px;
-  margin-top: 25px;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .panel-title {
@@ -38,12 +34,20 @@
   margin-top: 20px;
 }
 
-#tableheader {
-  font-size: 30px;
+/*The Travel Stats Table*/
+
+th {
+  font-size: 20px;
 }
 
+
 td {
-  font-size: 20px;
+  font-size: 15px;
+  width: 50%;
+}
+
+th, td {
+  border-bottom: 1px solid #ddd;
 }
 
 

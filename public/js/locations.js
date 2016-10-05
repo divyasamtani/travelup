@@ -3,7 +3,7 @@ $(document).ready(function(){
   var worldCoverage     = 0;
   var travelPercentage  = 0;
   var travelLevel       = "Noob";
-  var locations   = [];
+  var locations         = [];
 
   // GENERATE MAP
   function generateMap () {
@@ -16,48 +16,51 @@ $(document).ready(function(){
         }
       }
     }).vectorMap('get', 'mapObject');
-
   }
 
   // UPDATE MAP WITH CHECKED LOCATIONS
-  function updateMap (locations) {
-    mapObject.createRegions();
+  function updateMap () {
+    mapObject.clearSelectedRegions();
     mapObject.setSelectedRegions(locations)
   }
 
   // UPDATE TRAVEL LEVEL
-  function updateTravelLevel(percentage){
-    if(percentage <= 20){
+  function updateTravelLevel(){
+    if(travelPercentage <= 10){
       travelLevel = 'Noob';
       $('#travelLevel').text('Noob');
     }
-    if(percentage >= 21 && percentage <= 40){
+    if(travelPercentage >= 11 && travelPercentage <= 20){
       travelLevel = 'Well-Travelled';
       $('#travelLevel').text('Well-Travelled');
     }
-    if(percentage >= 41 && percentage <= 60){
+    if(travelPercentage >= 21 && travelPercentage <= 40){
       travelLevel = 'Global Traveller';
       $('#travelLevel').text('Global Traveller');
     }
-    if(percentage >= 61 && percentage <= 80){
+    if(travelPercentage >= 41 && travelPercentage <= 60){
       travelLevel = 'World Expert';
       $('#travelLevel').text('World Expert');
     }
-    if(percentage >= 81 && percentage <= 100){
+    if(travelPercentage >= 61 && travelPercentage <= 100){
       travelLevel = 'Travel Warrior';
       $('#travelLevel').text('Travel Warrior');
     }
   }
 
+  function updateTravelStats () {
+    worldCoverage    = locations.length;
+    travelPercentage = Math.round((worldCoverage/176)*100);
+
+    $('#worldCoverage').text(worldCoverage);
+    $('#travelPercentage').text(travelPercentage + '%');
+    updateTravelLevel();
+  }
 
   // LOOK FOR CHECKED LOCATIONS
   function bindCheckbox () {
     $("input[type=checkbox]").click(function(e) {
-
-      console.log(e.target);
-
       var $checkboxes = $("input[type=checkbox]");
-
       locations =[];
       for(var i = 0; i < $checkboxes.length; i++) {
         var checkbox = $checkboxes[i];
@@ -65,12 +68,8 @@ $(document).ready(function(){
           locations.push(countryCode[checkbox.value]);
         }
       }
-      updateMap(locations);
-      worldCoverage = locations.length;
-      $('#worldCoverage').text(worldCoverage);
-      travelPercentage = Math.round((locations.length/176)*100);
-      $('#travelPercentage').text(travelPercentage + '%');
-      updateTravelLevel(travelPercentage);
+      updateMap();
+      updateTravelStats();
       saveTravelStats();
     });
   }
@@ -80,37 +79,44 @@ $(document).ready(function(){
     $.ajax({
       url: '/user',
       method: 'PUT',
-      data: {locations: locations, worldCoverage: worldCoverage, travelPercentage: travelPercentage, travelLevel: travelLevel}
+      data: {
+        locations: locations,
+        worldCoverage: worldCoverage,
+        travelPercentage: travelPercentage,
+        travelLevel: travelLevel
+      }
     }).done(function(data){
       console.log("locations saved");
     });
+  }
+
+  function updateCheckbox(){
+    if (window.location.pathname === "/secret") {
+      for(var i = 0; i < locations.length; i++) {
+        var location = locations[i];
+        var name     = countryName[location];
+        $('input[type=checkbox][value="' + name + '"]').prop('checked', true);
+      }
+    }
+  }
+
+  function repopulateMap () {
+    var $loc = $('#loc');
+    if($loc.length == 1){
+      locations = JSON.parse($loc.text());
+
+      updateMap();
+      updateTravelStats();
+      updateCheckbox();
+    }
   }
 
   // INIIALIZE
   function init () {
     generateMap();
     bindCheckbox();
+    repopulateMap();
   }
 
   init();
-
-  function keepBoxesChecked(userLocations){
-    for(var i = 0; i < userLocations.length; i++) {
-       // window.location.pathname = "/secret";
-       // userLocations =  $("input[type=checkbox]");
-      }
-  }
-
-
-  if($('#loc').length == 1){
-    //init();
-    var userLocations = JSON.parse( $('#loc').text());
-    mapObject.setSelectedRegions(userLocations);
-    $('#worldCoverage').text(worldCoverage);
-    $('#travelPercentage').text(travelPercentage + '%');
-    $('#travelLevel').text(travelLevel);
-    keepBoxesChecked(userLocations);
-  }
-
-
 });
