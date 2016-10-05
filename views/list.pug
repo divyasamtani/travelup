@@ -1,0 +1,26 @@
+extends base/layout
+
+block main
+  form.form-horizontal
+    fieldset
+      legend My List
+      .form-group.label-floating
+        label.col-md-2.control-label(for='inputLocation') Location
+        .col-md-10
+          input#inputLocation.form-control(type='location', placeholder='Location')
+      .form-group
+        label.col-md-2.control-label(for='inputAccomodation') Accomodation
+        .col-md-10
+          input#inputAccomodation.form-control(type='accomodation', placeholder='Accomodation')
+      .form-group
+        label.col-md-2.control-label(for='inputRestaurant') Eats
+        .col-md-10
+          input#inputRestaurant.form-control(type='restaurant', placeholder='Restaurants')
+      .form-group
+        label.col-md-2.control-label(for='inputBar') Drinks
+        .col-md-10
+          input#inputBar.form-control(type='bar', placeholder='Bars')
+      .form-group
+        label.col-md-2.control-label(for='inputActivity') Play
+        .col-md-10
+          input#inputActivity.form-control(type='activity', placeholder='Activities')

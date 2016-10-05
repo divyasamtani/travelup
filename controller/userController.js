@@ -34,11 +34,5 @@ module.exports = function (app) {
   });
 
 
-  // DIRECTS TO USER PROFILE PAGE
-  app.get('/profile', isLoggedIn, function(req, res, next){
-    res.render('profile', { json: JSON.stringify(req.user.locations, req.user.worldCoverage, req.user.travelPercentage, req.user.travelLevel) } );
-
-  });
-
 
 }

@@ -27,15 +27,31 @@ module.exports = function (app, passport) {
   })
 
   // LOGIN
-  app.get('/login', function(req, res){
-    res.render('login', { message: req.flash('loginMessage') });
+  app.get('/auth', function(req, res){
+    res.render('auth', { message: req.flash('loginMessage') });
   });
 
-  app.post('/login', passport.authenticate('local-login', {
+  app.post('/auth', passport.authenticate('local-login', {
     successRedirect : '/secret',
     failureRedirect : '/',
     failureFlash: true
   }));
+
+    // DIRECTS TO SECRET
+  app.get('/secret', isLoggedIn, function(req, res){
+    res.render('secret', { message: req.flash('loginMessage'), json: JSON.stringify(req.user.locations)});
+  });
+
+
+  // DIRECTS TO USER PROFILE PAGE
+  app.get('/profile', isLoggedIn, function(req, res, next){
+    res.render('profile', { json: JSON.stringify(req.user.locations, req.user.worldCoverage, req.user.travelPercentage, req.user.travelLevel) } );
+  });
+
+  // DIRECTS TO LIST PAGE
+  app.get('/list', isLoggedIn, function(req, res, next){
+    res.render('list', { message: req.flash('loginMessage') });
+  });
 
 
   // FACEBOOK LOGIN
@@ -44,7 +60,7 @@ module.exports = function (app, passport) {
   // FB CALLBACK
   app.get('/auth/facebook/callback', passport.authenticate('facebook', {
     successRedirect : '/secret',
-    failureRedirect : '/login',
+    failureRedirect : '/auth',
     failureFlash: true
   }));
 
@@ -54,15 +70,10 @@ module.exports = function (app, passport) {
   // INSTAGRAM CALLBACK
  app.get('/auth/instagram/callback', passport.authenticate('instagram',{
      successRedirect: '/secret',
-     failureRedirect: '/login',
+     failureRedirect: '/auth',
      failureFlash: true
    }));
 
-
-    // SECRET (IF LOGGED IN)
-  app.get('/secret', isLoggedIn, function(req, res){
-    res.render('secret', { message: req.flash('loginMessage'), json: JSON.stringify(req.user.locations)});
-  });
 
   // LOGOUT
   app.get('/logout', function(req, res){
