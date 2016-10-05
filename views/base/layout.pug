@@ -11,6 +11,7 @@ html(lang='en')
     //- CSS
     //- Font Awesome
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css')
     //- Bootstrap core CSS
     link(href='lib/css/bootstrap.min.css', rel='stylesheet')
     //- Material Design Bootstrap
@@ -19,9 +20,11 @@ html(lang='en')
     link(href='css/map.css', rel='stylesheet')
     //- Custom styles
     link(href='css/style.css', rel='stylesheet')
-
+    link(href='css/nav.css', rel='stylesheet')
     //- Fonts
-    link(href='http://fonts.googleapis.com/css?family=Open+Sans', rel='stylesheet prefetch')
+    link(href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet")
+    link(href='http://fonts.googleapis.com/css?family=Montserrat:400,700')
+
 
     //- JS
     //- JQuery
@@ -35,13 +38,20 @@ html(lang='en')
     //- Vector Map
     script(type='text/javascript', src='js/map.js')
     script(type='text/javascript', src='js/world-mill.js')
+    script(type='text/javascript', src='js/nav.js')
+
+
 
   body
+    .wrapper
+        .sidebar
+            include ../includes/nav.pug
+        .content
+            a.sidebarbutton
+            block main
+
     //- Main Content Style
     block style
 
     //- Main Content Script
     block script
-
-    //- Main Content
-    block main

@@ -42,9 +42,9 @@ var userSchema = mongoose.Schema({
     status            : String,
     locations         : [String],
     lists             : [listSchema],
-    worldPercentage   : Number,
-    countriesCovered  : Number,
-    travelScore       : String,
+    travelPercentage  : Number,
+    worldCoverage     : Number,
+    travelLevel       : String,
     profilePicture    : String, // URL
 
 

@@ -32,7 +32,6 @@ module.exports = function (app, passport) {
   });
 
   app.post('/login', passport.authenticate('local-login', {
-
     successRedirect : '/secret',
     failureRedirect : '/',
     failureFlash: true
@@ -58,6 +57,8 @@ module.exports = function (app, passport) {
      failureRedirect: '/login',
      failureFlash: true
    }));
+
+// ASK IF I HAVE TO STRINGIFY ALL THE OTHER DATA TOO
 
     // SECRET (IF LOGGED IN)
   app.get('/secret', isLoggedIn, function(req, res){

@@ -1,26 +1,6 @@
 extends base/layout
 
 block main
-  nav.navbar.navbar-dark.bg-primary
-    //- Collapse button
-    button.navbar-toggler.hidden-sm-up(type='button', data-toggle='collapse', data-target='#collapseEx2')
-      i.fa.fa-bars
-    .container
-      //- Collapse content
-      #collapseEx2.collapse.navbar-toggleable-xs
-        //- Navbar Brand
-        a.navbar-brand(href='#') Travelup
-        //- Links
-        ul.nav.navbar-nav
-          li.nav-item.active
-            a.nav-link(href='#')
-              | Home
-              span.sr-only (current)
-          li.nav-item
-            a.nav-link(href='#') My Profile
-          li.nav-item
-            a.nav-link(href='#') Friends
-      //- /.Collapse content
   #mainbody.container
     .row
       #mapdiv.col-xs-6
