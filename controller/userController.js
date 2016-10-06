@@ -3,6 +3,7 @@ var User = require('../model/user');
 // Load validator
 var validator = require('validator');
 
+// Middleware
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) {
     return next();
@@ -32,7 +33,4 @@ module.exports = function (app) {
       res.json('candies');
     });
   });
-
-
-
 }

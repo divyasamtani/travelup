@@ -56,3 +56,7 @@ th, td {
 #loc {
   display: none;
 }
+
+#myModal .md-form i {
+  left: 0;
+}

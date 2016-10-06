@@ -4,7 +4,6 @@ const placeSchema = require('./place').schema;
 const userSchema = require('./user').schema;
 
 
-
 var listSchema = new mongoose.Schema ({
 
     visitor           : [{ type: Schema.Types.ObjectId, ref: 'User' }],
@@ -19,4 +18,4 @@ var listSchema = new mongoose.Schema ({
 
 
 module.exports = mongoose.model('List', listSchema);
-//exports.model or module.exports here?
+
