@@ -47,6 +47,13 @@ $(document).ready(function(){
     for (var i = 0; i < list.activities.length; i++) {
       $activities.eq(i).val(list.activities[i]);
     }
+
+    $("#addlist input").each(function(index, value){
+      if($(value).val() != ""){
+        $(value).parents('.md-form').find('label').addClass('active');
+        $(value).parents('.md-form').find('i').addClass('active');
+      }
+    });
   }
 
 // SAVE PLACES TO LIST
@@ -99,5 +106,14 @@ $(document).ready(function(){
     event.preventDefault();
     addPlaces();
     saveList();
+
+    // clear
+    $(this).find('input').val('');
+
+    // Remove active from all inputs and lables
+
+    $(this).find('label').removeClass('active');
+    $(this).find('i').removeClass('active');
+
   });
 });

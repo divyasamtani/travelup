@@ -65,25 +65,32 @@ th, td {
   left: 0;
 }
 
-.card {
-  margin-top: 20px;
-  padding-top: 14px;
-  width: 240px;
-  margin-right: 10px;
+
+#createNewListButton {
+  position: relative;
+  margin: auto;
+  margin-top: 10px;
+  font-size: 20px;
+  width: 100%;
 }
+
 
 .card-header {
   height: 50px;
-  width: 120%;
-  margin-left: -17px;
+  margin-top: 10px;
 }
+
 
 .card a {
-  font-size: 12px;
+  font-size: 10px;
+  width: 75px;
 }
 
-.editListButton {
-  width: 70%;
-  margin-left: 25px;
+
+.card {
+  margin: 10px;
 }
 
+.card-block {
+  padding:0;
+}

@@ -25,68 +25,78 @@ block main
                 td Travel Level
                 td#travelLevel
       #listdiv.col-xs-6
-        h1#header.col-xs-12 My Lists
-          #cardList
-            - for (var i = 0; i < lists.length; i++) {
-              .card.col-xs-6
-                .col-xs-12
-                  h5.card-header.elegant-color-dark.white-text=lists[i].location
-                  .card-block
-                    a.editListButton.btn.btn-default("data-id" = lists[i]._id) Edit List
-            - }
-        button.btn.btn-warning.btn-lg(type='button', data-toggle='modal', data-target='#myModal')
+        h1#header My Lists
+        button#createNewListButton.btn.btn-mdb.btn-lg(type='button', data-toggle='modal', data-target='#myModal')
           | + Create New List
-        //- // Modal
-        #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-          .modal-dialog(role='document')
-            //- Content
-            .modal-content
-              //-  Header
-              .modal-header
-                button.close(type='button', data-dismiss='modal', aria-label='Close')
-                  span(aria-hidden='true') ×
-                h4#myModalLabel.modal-title LOCATION
-              //- Body
-              .modal-body
-                 form#addlist(role='form')
-                  .card-block
-                    //- Header
-                    .text-xs-center
-                      h3
-                        i.fa.fa-envelope
-                        |  My List
-                      hr.m-t-2.m-b-2
-                      //- // Body
-                      .md-form.location
-                        i.fa.fa-user.prefix
-                        input.form-control(type='text')
-                        label(for='location') Location
-                      .md-form.accomodation
-                        i.fa.fa-envelope.prefix
-                        input.form-control(type='text')
-                        label(for='accomodation')  Accomodation
-                      .md-form.foodandbev
-                        i.fa.fa-tag.prefix
-                        input.form-control(type='text')
-                        input.form-control(type='text')
-                        input.form-control(type='text')
-                        input.form-control(type='text')
-                        input.form-control(type='text')
-                        label(for='foodandbev')  Eats and Drinks
-                      .md-form.activities
-                        i.fa.fa-tag.prefix
-                        input.form-control(type='text')
-                        input.form-control(type='text')
-                        input.form-control(type='text')
-                        input.form-control(type='text')
-                        input.form-control(type='text')
-                        label(for='activities')  Fun things to do
-                    //- // Submit Button
-                    .text-xs-center
-                      button.btn.btn-default Save My List
-              // Footer
-              .modal-footer
-                button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+        #cardList
+          .row
+            - for (var i = 0; i < lists.length; i++) {
+                if(i%2)
+                  .card.col-xs-5.pull-right
+                    .card-header.elegant-color-dark.white-text=lists[i].location
+                    .card-block
+                      a.editListButton.btn.btn-lime("data-id" = lists[i]._id) Edit List
+                      a.deleteListButton.btn.btn-cyan Delete
+                else
+                  .card.col-xs-5.pull-left
+                    .card-header.elegant-color-dark.white-text=lists[i].location
+                    .card-block
+                      a.editListButton.btn.btn-lime("data-id" = lists[i]._id) Edit List
+                      a.deleteListButton.btn.btn-cyan Delete
+                if(i%2)
+                  div(style="clear:both;")
+            - }
+
+      #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog(role='document')
+          //- Content
+          .modal-content
+            //-  Header
+            .modal-header
+              button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+              h4#myModalLabel.modal-title LOCATION
+            //- Body
+            .modal-body
+               form#addlist(role='form')
+                .card-block
+                  //- Header
+                  .text-xs-center
+                    h3
+                      i.fa.fa-envelope
+                      |  My List
+                    hr.m-t-2.m-b-2
+                    //- // Body
+                    .md-form.location
+                      i.fa.fa-user.prefix
+                      input.form-control(type='text')
+                      label(for='location') Location
+                    .md-form.accomodation
+                      i.fa.fa-envelope.prefix
+                      input.form-control(type='text')
+                      label(for='accomodation')  Accomodation
+                    .md-form.foodandbev
+                      i.fa.fa-tag.prefix
+                      input.form-control(type='text')
+                      input.form-control(type='text')
+                      input.form-control(type='text')
+                      input.form-control(type='text')
+                      input.form-control(type='text')
+                      label(for='foodandbev')  Eats and Drinks
+                    .md-form.activities
+                      i.fa.fa-tag.prefix
+                      input.form-control(type='text')
+                      input.form-control(type='text')
+                      input.form-control(type='text')
+                      input.form-control(type='text')
+                      input.form-control(type='text')
+                      label(for='activities')  Fun things to do
+                  //- // Submit Button
+                  .text-xs-center
+                    button.btn.btn-default Save My List
+            // Footer
+            .modal-footer
+              button.btn.btn-deep-purple(type='button', data-dismiss='modal') Close
 
 
 
