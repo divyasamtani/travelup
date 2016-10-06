@@ -4,6 +4,8 @@
 }
 
 /*PROFILE SET UP PAGE*/
+
+
 #myLocations {
   height: 600px;
   margin-left: 30px;
@@ -15,7 +17,7 @@
   font-size: 30px;
 }
 
-#mapheader {
+#header {
   margin-bottom: 10px;
   font-size: 30px;
 }
@@ -33,6 +35,8 @@
   height: 300px;
   margin-top: 20px;
 }
+
+
 
 /*The Travel Stats Table*/
 
@@ -60,3 +64,26 @@ th, td {
 #myModal .md-form i {
   left: 0;
 }
+
+.card {
+  margin-top: 20px;
+  padding-top: 14px;
+  width: 240px;
+  margin-right: 10px;
+}
+
+.card-header {
+  height: 50px;
+  width: 120%;
+  margin-left: -17px;
+}
+
+.card a {
+  font-size: 12px;
+}
+
+.editListButton {
+  width: 70%;
+  margin-left: 25px;
+}
+

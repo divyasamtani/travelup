@@ -1,3 +1,5 @@
+var List = require('../model/list');
+
 module.exports = function (app, passport) {
 
   // router middelware
@@ -45,7 +47,13 @@ module.exports = function (app, passport) {
 
   // DIRECTS TO USER PROFILE PAGE
   app.get('/profile', isLoggedIn, function(req, res, next){
-    res.render('profile', { json: JSON.stringify(req.user.locations, req.user.worldCoverage, req.user.travelPercentage, req.user.travelLevel) } );
+    var userJSON = JSON.stringify(req.user.locations, req.user.worldCoverage, req.user.travelPercentage, req.user.travelLevel);
+
+    List.find({visitor: req.user._id}, function (err, lists) {
+      if (err) { return  res.render('profile', { json: userJSON, lists: []}); }
+
+      res.render('profile', { json: userJSON, lists: lists });
+    });
   });
 
   // DIRECTS TO LIST PAGE

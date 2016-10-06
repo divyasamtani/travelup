@@ -13,22 +13,30 @@ function isLoggedIn(req, res, next) {
 
 // ATTACHES PlACES TO LIST
 module.exports = function (app) {
-  app.put('/list', isLoggedIn, function(req, res, next){
-    var visitor = req.user.name;
-    var places = req.body.places;
-    var comment = req.body.comment;
+  app.get('/list/:id', function (req, res, next) {
+    List.findOne({_id: req.params.id}, function(err, list){
+      if (err) { return res.json(err).status(401) }
 
-    //TODO: validation
-    req.list.visitor = visitor;
-    req.list.places = places;
-    req.list.comment = coment;
+      if (!list) { return res.json({message: "no list found"}).status(401) }
 
-    req.list.save(function(err, updatedList){
-      if(err){
-        console.log(err);
-        res.json('error');
-      }
-      res.json('candies');
+      res.json(list);
+    })
+  });
+
+  app.post('/list', isLoggedIn, function(req, res, next){
+    var visitor = req.user._id;
+    var places  = req.body.places;
+
+    List.create({
+      visitor: visitor,
+      location: places.location,
+      accomodation: places.accomodation,
+      foodandbev: places.foodandbev,
+      activities: places.activities
+    }, function (err, list) {
+      if (err) { return res.json(err) }
+
+      res.json(list);
     });
   });
 }

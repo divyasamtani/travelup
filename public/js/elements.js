@@ -1,12 +1,13 @@
 $(document).ready(function() {
 
-
   // NAV BAR
 
   $('.sidebarbutton').on('click', function() {
     $('.content').toggleClass('isOpen');
   });
 
+
+ // MODAL FUNCTIONALITY
 
   $('#myModal').on('shown.bs.modal', function () {
     $('.modal-backdrop').appendTo('#mainbody');
@@ -18,8 +19,13 @@ $(document).ready(function() {
   });
 
   $(document).on('blur', '.modal input', function(e){
-    $(e.target).parents('.md-form').find('label').removeClass('active');
+
+    if( $(e.target).val() == "" ){
+      $(e.target).parents('.md-form').find('label').removeClass('active');
+    }
+
     $(e.target).parents('.md-form').find('i').removeClass('active');
+
   });
 
 });
