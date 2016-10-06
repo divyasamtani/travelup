@@ -24,3 +24,34 @@ block main
         label.col-md-2.control-label(for='inputActivity') Play
         .col-md-10
           input#inputActivity.form-control(type='activity', placeholder='Activities')
+
+
+
+
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        //- <!--Content-->
+        <div class="modal-content">
+            //- <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            //- <!--Body-->
+            <div class="modal-body">
+                <p>THIS IS MY FORM</p>
+            </div>
+            //- <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Create My List</button>
+            </div>
+        </div>
+    </div>
+</div>

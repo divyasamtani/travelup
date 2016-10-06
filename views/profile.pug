@@ -25,79 +25,62 @@ block main
                 td Travel Level
                 td#travelLevel
       .col-xs-6
-        .card-block
-          //- // Header
-          .text-xs-center
-            h3
-              i.fa.fa-envelope
-              |  My List
-            hr.m-t-2.m-b-2
-          //- // Title
-          p  What's on your list?
-          br
-          //- // Body
-          .md-form
-            i.fa.fa-user.prefix
-            input#location.form-control(type='text')
-            label(for='location') Location
-          .md-form
-            i.fa.fa-envelope.prefix
-            input#accomodation.form-control(type='text')
-            label(for='accomodation')  Accomodation
-          .md-form
-            i.fa.fa-tag.prefix
-            input.form-control.foodandbev(type='text')
-            input.form-control.foodandbev(type='text')
-            input.form-control.foodandbev(type='text')
-            input.form-control.foodandbev(type='text')
-            input.form-control.foodandbev(type='text')
-            label(for='foodandbev')  Eats and Drinks
-          .md-form
-            i.fa.fa-tag.prefix
-            input.form-control.activites(type='text')
-            input.form-control.activites(type='text')
-            input.form-control.activites(type='text')
-            input.form-control.activites(type='text')
-            input.form-control.activites(type='text')
-            label(for='activities')  Fun things to do
-          .md-form
-            i.fa.fa-pencil.prefix
-            textarea#comments.md-textarea(type='text')
-            label(for='comments')  Thoughts
-          //- // Submit Button
-          .text-xs-center
-            button.btn.btn-default Submit
+        p My Lists
+        button.btn.btn-primary.btn-(type='button', data-toggle='modal', data-target='#myModal')
+          | Create new List
+        #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+          .modal-dialog(role='document')
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                span(aria-hidden='true') ×
+                h4#myModalLabel.modal-title New List
+              .modal-body
+                .card-block
+                  //- // Header
+                  .text-xs-center
+                    h3
+                      i.fa.fa-envelope
+                      |  My List
+                    hr.m-t-2.m-b-2
+                    //- // Title
+                    p  What's on your list?
+                    br
+                    //- // Body
+                    .md-form
+                      i.fa.fa-user.prefix
+                      input#location.form-control(type='text')
+                      label(for='location') Location
+                    .md-form
+                      i.fa.fa-envelope.prefix
+                      input#accomodation.form-control(type='text')
+                      label(for='accomodation')  Accomodation
+                    .md-form
+                      i.fa.fa-tag.prefix
+                      input.form-control.foodandbev(type='text')
+                      input.form-control.foodandbev(type='text')
+                      input.form-control.foodandbev(type='text')
+                      input.form-control.foodandbev(type='text')
+                      input.form-control.foodandbev(type='text')
+                      label(for='foodandbev')  Eats and Drinks
+                    .md-form
+                      i.fa.fa-tag.prefix
+                      input.form-control.activites(type='text')
+                      input.form-control.activites(type='text')
+                      input.form-control.activites(type='text')
+                      input.form-control.activites(type='text')
+                      input.form-control.activites(type='text')
+                      label(for='activities')  Fun things to do
+                    .md-form
+                      i.fa.fa-pencil.prefix
+                      textarea#comments.md-textarea(type='text')
+                      label(for='comments')  Thoughts
+                  //- // Submit Button
+                  .text-xs-center
+                    button.btn.btn-default Submit
+              .modal-footer
+                button.btn.btn-secondary(type='button', data-dismiss='modal') Create My List
 
   script(type='text/javascript', src='js/locations.js')
 
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-    Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <!--Body-->
-            <div class="modal-body">
-                ...
-            </div>
-            <!--Footer-->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-</div>
