@@ -74,12 +74,25 @@ $(document).ready(function(){
     });
   }
 
+  //   function alignCards (list) {
+  //     for (var i = 0; i < lists.length; i++) {
+  //         if(i%2) {
+  //           $(this).find('.card').addClass('pull-right');
+  //         } else {
+  //         $(this).find('.card').addClass('pull-left');
+  //         } if(i%2) {
+  //           div(style="clear:both;");
+  //         }
+  //     }
+  // }
+
+
 // CREATE AND SHOW NEW CARD
   function createNewCard (list) {
     var $cardList = $('#cardList');
     var newText  = '' +
     '<div class="card col-xs-5">' +
-          '<h5 class="card-header elegant-color-dark white-text">' + list.location + '</h5>' +
+          '<h5 class="card-header elegant-color-dark white-text" width="70px">' + list.location + '</h5>' +
           '<div class="card-block"> <a class="btn btn-lime editListButton" data-id="' + list._id + '">Edit</a> <a class="btn btn-cyan deleteListButton" data-id="' + list._id + '">Delete</a> </div>' +
         '</div>'
       '</div>';
@@ -135,10 +148,10 @@ $(document).ready(function(){
       saveList("/user/list/" + updateId, "PUT")
     }
 
-    // Clear
+    // Clear and remove active from all inputs and lables
     $(this).find('input').val('');
 
-    // Remove active from all inputs and lables
+    //
     $(this).find('label').removeClass('active');
     $(this).find('i').removeClass('active');
   });

@@ -92,53 +92,6 @@ block main
             .modal-footer
               button.btn.btn-deep-purple(type='button', data-dismiss='modal') Close
 
-      //- EDIT FORM MODAL
-      #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
-        .modal-dialog(role='document')
-          .modal-content
-            .modal-header
-              button.close(type='button', data-dismiss='modal', aria-label='Close')
-                span(aria-hidden='true') ×
-              h4#myModalLabel.modal-title LOCATION
-            .modal-body
-               form#addlist(role='form')
-                .card-block
-                  .text-xs-center
-                    h3
-                      i.fa.fa-envelope
-                      |  My List
-                    hr.m-t-2.m-b-2
-                    //- // Body
-                    .md-form.location
-                      i.fa.fa-user.prefix
-                      input.form-control(type='text')
-                      label(for='location') Location
-                    .md-form.accomodation
-                      i.fa.fa-envelope.prefix
-                      input.form-control(type='text')
-                      label(for='accomodation')  Accomodation
-                    .md-form.foodandbev
-                      i.fa.fa-tag.prefix
-                      input#foodandbevone.form-control(type='text')
-                      input.form-control(type='text')
-                      input.form-control(type='text')
-                      input.form-control(type='text')
-                      input.form-control(type='text')
-                      label(for='foodandbev')  Eats and Drinks
-                    .md-form.activities
-                      i.fa.fa-tag.prefix
-                      input.form-control(type='text')
-                      input.form-control(type='text')
-                      input.form-control(type='text')
-                      input.form-control(type='text')
-                      input.form-control(type='text')
-                      label(for='activities')  Fun things to do
-                  .text-xs-center
-                    button.btn.btn-default Save My List
-            .modal-footer
-              button.btn.btn-deep-purple(type='button', data-dismiss='modal') Close
-
-
 
 block script
   script(type='text/javascript', src='js/locations.js')

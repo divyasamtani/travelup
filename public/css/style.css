@@ -36,8 +36,6 @@
   margin-top: 20px;
 }
 
-
-
 /*The Travel Stats Table*/
 
 th {
@@ -68,10 +66,10 @@ th, td {
 
 #createNewListButton {
   position: relative;
-  margin: auto;
+  margin-left: -5px;
   margin-top: 10px;
   font-size: 20px;
-  width: 40%;
+  width: 44%;
   padding: 10px;
 }
 
@@ -82,13 +80,14 @@ th, td {
 .card-header {
   height: 50px;
   margin-top: 10px;
+  text-align: center;
 }
 
 
 .card a {
   font-size: 10px;
   height: 35px;
-  width: 75px;
+  width: 70px;
   margin-left: 15px;
   padding-top: 10px;
 }
