@@ -13,35 +13,77 @@ function isLoggedIn(req, res, next) {
 
 // ATTACHES PlACES TO LIST
 module.exports = function (app) {
-  app.get('/list/:id', function (req, res, next) {
-    List.findOne({_id: req.params.id}, function(err, list){
-      if (err) { return res.json(err).status(401) }
+  app.get('/user/list/:id', isLoggedIn, function (req, res, next) {
+    var user   = req.user;
+    var listId = req.params.id;
+    var found  = null;
 
-      if (!list) { return res.json({message: "no list found"}).status(401) }
+    user.lists.forEach(function(element){
+      if(element._id == listId){
+        return found = element;
+      }
+    });
 
-      res.json(list);
-    })
+    if (!found) {
+      res.json("Cannot find list").status(404);
+    } else {
+      res.json(found);
+    }
   });
 
-  app.post('/list', isLoggedIn, function(req, res, next){
+  app.put('/user/list/:id', isLoggedIn, function (req, res, next) {
+    var listId  = req.params.id;
+    var user    = req.user;
+    var visitor = user._id
+    var places  = req.body.places;
+
+    req.user.lists.forEach(function(element){
+      if(element._id == listId){
+        element.location     = places.location;
+        element.accomodation = places.accomodation;
+        element.foodandbev   = places.foodandbev;
+        element.activities   = places.activities;
+
+        return req.user.save(function(err, updatedUser){
+          return res.json(updatedUser.lists);
+        });
+      }
+    });
+  });
+
+  app.post('/user/list', isLoggedIn, function(req, res, next){
     var visitor = req.user._id;
     var places  = req.body.places;
 
-    List.create({
+    req.user.lists.push({
       visitor: visitor,
       location: places.location,
       accomodation: places.accomodation,
       foodandbev: places.foodandbev,
       activities: places.activities
-    }, function (err, list) {
-      if (err) { return res.json(err) }
+    });
 
-      res.json(list);
+    req.user.save(function(err, updatedUser) {
+
+      if(err){
+        console.log(err);
+      }
+
+      res.json(req.user.lists);
     });
   });
+
+ app.delete('/user/list/:id', isLoggedIn, function(req, res){
+    var listId = req.params.id;
+
+    req.user.lists.forEach(function(element, index){
+      if(element._id == listId){
+        req.user.lists.splice(index, 1);
+        return req.user.save(function(err, updatedUser){
+          return res.json("deleted");
+        });
+      }
+    });
+
+  });
 }
-
-// ATTACHES LIST TO USER
-
-
-

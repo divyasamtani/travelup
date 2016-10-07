@@ -71,9 +71,13 @@ th, td {
   margin: auto;
   margin-top: 10px;
   font-size: 20px;
-  width: 100%;
+  width: 40%;
+  padding: 10px;
 }
 
+.btn {
+    padding: 0;
+  }
 
 .card-header {
   height: 50px;
@@ -83,7 +87,10 @@ th, td {
 
 .card a {
   font-size: 10px;
+  height: 35px;
   width: 75px;
+  margin-left: 15px;
+  padding-top: 10px;
 }
 
 

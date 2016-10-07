@@ -49,11 +49,8 @@ module.exports = function (app, passport) {
   app.get('/profile', isLoggedIn, function(req, res, next){
     var userJSON = JSON.stringify(req.user.locations, req.user.worldCoverage, req.user.travelPercentage, req.user.travelLevel);
 
-    List.find({visitor: req.user._id}, function (err, lists) {
-      if (err) { return  res.render('profile', { json: userJSON, lists: []}); }
+    res.render('profile', { json: userJSON, lists: req.user.lists });
 
-      res.render('profile', { json: userJSON, lists: lists });
-    });
   });
 
   // DIRECTS TO LIST PAGE
