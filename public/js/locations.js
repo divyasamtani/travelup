@@ -36,11 +36,11 @@ $(document).ready(function(){
     }
     if(travelPercentage >= 21 && travelPercentage <= 40){
       travelLevel = 'Global Traveller';
-      $('#travelLevel').text('Global Traveller');
+      $('#travelLevel').text('World Traveller');
     }
     if(travelPercentage >= 41 && travelPercentage <= 60){
       travelLevel = 'World Expert';
-      $('#travelLevel').text('World Expert');
+      $('#travelLevel').text('Travel Star');
     }
     if(travelPercentage >= 61 && travelPercentage <= 100){
       travelLevel = 'Travel Warrior';

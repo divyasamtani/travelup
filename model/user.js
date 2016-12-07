@@ -5,7 +5,7 @@ const listSchema = require('./list').schema;
 
 var bcrypt   = require('bcrypt-nodejs');
 
-// define the schema for user
+// USER SCHEMA
 var userSchema = mongoose.Schema({
 
     local            : {
@@ -39,15 +39,11 @@ var userSchema = mongoose.Schema({
     },
 
     name              : String,
-    status            : String,
     locations         : [String],
     lists             : [listSchema],
     travelPercentage  : Number,
     worldCoverage     : Number,
     travelLevel       : String,
-    profilePicture    : String, // URL
-
-
 });
 
 

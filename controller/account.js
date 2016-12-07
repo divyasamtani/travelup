@@ -2,13 +2,15 @@ var List = require('../model/list');
 
 module.exports = function (app, passport) {
 
-  // router middelware
+// ROUTER MIDDLEWARE
   function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) {
       return next();
     }
     res.redirect('/')
   }
+
+// ACCOUNT SIGN UP AND LOGIN PAGES *******************************************************************************
 
   // SIGN UP
   app.get('/', function(req, res){
@@ -19,7 +21,6 @@ module.exports = function (app, passport) {
     passport.authenticate('local-signup', function(err, user, info){
       if (err) {return res.json(err).status(500);}
       if (!user) {return res.json(info).status(400);}
-
       req.logIn(user, function(err) {
             if (err) { return next(err); }
             return res.json({detail: user});
@@ -39,10 +40,8 @@ module.exports = function (app, passport) {
     failureFlash: true
   }));
 
-    // DIRECTS TO SECRET
-  app.get('/secret', isLoggedIn, function(req, res){
-    res.render('secret', { message: req.flash('loginMessage'), json: JSON.stringify(req.user.locations)});
-  });
+
+// ROUTES TO PAGES *********************************************************************************************
 
 
   // DIRECTS TO USER PROFILE PAGE
@@ -53,10 +52,19 @@ module.exports = function (app, passport) {
 
   });
 
+  // DIRECTS TO PROFILE SET UP PAGE
+  app.get('/secret', isLoggedIn, function(req, res){
+    res.render('secret', { message: req.flash('loginMessage'), json: JSON.stringify(req.user.locations)});
+  });
+
+
   // DIRECTS TO LIST PAGE
   app.get('/list', isLoggedIn, function(req, res, next){
     res.render('list', { message: req.flash('loginMessage') });
   });
+
+
+// SOCIAL MEDIA AUTHORIZATION ***********************************************************************************
 
 
   // FACEBOOK LOGIN

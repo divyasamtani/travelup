@@ -53,26 +53,26 @@ block main
             .modal-header
               button.close(type='button', data-dismiss='modal', aria-label='Close')
                 span(aria-hidden='true') ×
-              h4#myModalLabel.modal-title LOCATION
+              h4#myModalLabel.modal-title New Travel Card
             .modal-body
                form#addlist(role='form')
                 .card-block
                   .text-xs-center
                     h3
-                      i.fa.fa-envelope
+                      i.fa.fa-plane
                       |  My List
                     hr.m-t-2.m-b-2
                     //- // Body
                     .md-form.location
-                      i.fa.fa-user.prefix
+                      i.fa.fa-map-marker.prefix
                       input.form-control(type='text')
                       label(for='location') Location
                     .md-form.accomodation
-                      i.fa.fa-envelope.prefix
+                      i.fa.fa-bed.prefix
                       input.form-control(type='text')
                       label(for='accomodation')  Accomodation
                     .md-form.foodandbev
-                      i.fa.fa-tag.prefix
+                      i.fa.fa-glass.prefix
                       input#foodandbevone.form-control(type='text')
                       input.form-control(type='text')
                       input.form-control(type='text')
@@ -80,7 +80,7 @@ block main
                       input.form-control(type='text')
                       label(for='foodandbev')  Eats and Drinks
                     .md-form.activities
-                      i.fa.fa-tag.prefix
+                      i.fa.fa-camera-retro.prefix
                       input.form-control(type='text')
                       input.form-control(type='text')
                       input.form-control(type='text')

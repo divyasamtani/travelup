@@ -10,8 +10,9 @@ $(document).ready(function() {
   $('#createNewListButton').on('click', function(e){
     // clear
     $('#myModal').find('input').val('');
+    $('#myModalLabel').text('New Travel Card');
 
-    // Remove active from all inputs and lables
+    // Remove active from all inputs and labels
     $('#myModal').find('label').removeClass('active');
     $('#myModal').find('i').removeClass('active');
   });

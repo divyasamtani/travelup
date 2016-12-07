@@ -5,7 +5,7 @@ const userSchema = require('./user').schema;
 
 
 var listSchema = new mongoose.Schema ({
-  visitor           : {type: Schema.Types.ObjectId, ref: 'User' },
+  visitor           : {type: Schema.Types.ObjectId, ref: 'User'},
   location          : String,
   accomodation      : String,
   foodandbev        : [String],
@@ -13,3 +13,7 @@ var listSchema = new mongoose.Schema ({
 });
 
 module.exports = mongoose.model('List', listSchema);
+
+
+
+

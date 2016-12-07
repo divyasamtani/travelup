@@ -6,7 +6,7 @@ $(document).ready(function(){
   var createMode = true;
   var updateId   = null;
 
-// ADD LIST PLACES TO ARRAY
+// CREATE AN OBJECT OF LIST PLACES
   function addPlaces() {
     // Location
     places.location = $('.location input').val();
@@ -28,9 +28,11 @@ $(document).ready(function(){
     }
   }
 
+// POPULATE EDIT FORM WITH SAVED LIST PLACES
   function replacePlaces(list){
       // Location
     $('.location input').val(list.location);
+    $('#myModalLabel').text(list.location);
 
     // accomodation
     $('.accomodation input').val(list.accomodation);
@@ -86,13 +88,12 @@ $(document).ready(function(){
   //     }
   // }
 
-
 // CREATE AND SHOW NEW CARD
   function createNewCard (list) {
     var $cardList = $('#cardList');
     var newText  = '' +
     '<div class="card col-xs-5">' +
-          '<h5 class="card-header elegant-color-dark white-text" width="70px">' + list.location + '</h5>' +
+          '<h5 class="card-header elegant-color-dark white-text">' + list.location + '</h5>' +
           '<div class="card-block"> <a class="btn btn-lime editListButton" data-id="' + list._id + '">Edit</a> <a class="btn btn-cyan deleteListButton" data-id="' + list._id + '">Delete</a> </div>' +
         '</div>'
       '</div>';
@@ -100,8 +101,7 @@ $(document).ready(function(){
   }
 
 
-// EDIT BUTTON ON LIST CARD
-// Retrive info to put in modal
+// EDIT BUTTON ON LIST CARD - Retrieve info to put in modal
   $("#cardList").on('click', '.editListButton', function (e) {
     e.preventDefault();
 
@@ -136,7 +136,7 @@ $(document).ready(function(){
     });
   });
 
-// UPDATE LISTS WITH NEW CARD
+// SUBMIT NEW LIST AND SAVE EDITED LIST
   $("#addlist").submit(function(event) {
     event.preventDefault();
 
@@ -148,16 +148,20 @@ $(document).ready(function(){
       saveList("/user/list/" + updateId, "PUT")
     }
 
-    // Clear and remove active from all inputs and lables
+    // Clears labels and removes active class
     $(this).find('input').val('');
-
-    //
     $(this).find('label').removeClass('active');
     $(this).find('i').removeClass('active');
   });
 
+  // Reset modal once closed
   $('#myModal').on("hidden.bs.modal", function () {
     createMode = true;
     updateId   = null;
   })
 });
+
+
+
+
+

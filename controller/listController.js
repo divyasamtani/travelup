@@ -11,7 +11,6 @@ function isLoggedIn(req, res, next) {
   res.redirect('/')
 }
 
-// ATTACHES PlACES TO LIST
 module.exports = function (app) {
   app.get('/user/list/:id', isLoggedIn, function (req, res, next) {
     var user   = req.user;
@@ -84,6 +83,7 @@ module.exports = function (app) {
         });
       }
     });
-
   });
 }
+
+

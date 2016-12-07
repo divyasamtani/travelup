@@ -3,6 +3,12 @@
   text-transform: uppercase;
 }
 
+.content {
+  background-image: url('../public/images/background.jpeg');
+  background-size: cover;
+  overflow: auto;
+}
+
 /*PROFILE SET UP PAGE*/
 
 
@@ -63,6 +69,9 @@ th, td {
   left: 0;
 }
 
+#myModal button {
+  padding: 10px;
+}
 
 #createNewListButton {
   position: relative;
@@ -81,17 +90,17 @@ th, td {
   height: 50px;
   margin-top: 10px;
   text-align: center;
+  font-size: 18px;
+
 }
 
 
 .card a {
-  font-size: 10px;
+  font-size: 12px;
   height: 35px;
-  width: 70px;
-  margin-left: 15px;
+  width: 91px;
   padding-top: 10px;
 }
-
 
 .card {
   margin: 10px;
